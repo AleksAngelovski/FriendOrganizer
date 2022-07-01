@@ -9,11 +9,14 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.4.0" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.6" />
+	<PackageReference Include="Prism.Core" Version="8.1.97" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FriendOrganizer.Core\FriendOrganizer.Core.csproj" />
     <ProjectReference Include="..\FriendOrganizer.Infra.DataAccess\FriendOrganizer.Infra.DataAccess.csproj" />
+	 
   </ItemGroup>
 
 </Project>
