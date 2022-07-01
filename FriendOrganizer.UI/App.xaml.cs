@@ -24,7 +24,7 @@ namespace FriendOrganizer.UI
             var container = bootstrapper.Bootstrap();
 
             var mainWindow = container.Resolve<MainWindow>();
-
+           
             mainWindow.Show();
         }
     }

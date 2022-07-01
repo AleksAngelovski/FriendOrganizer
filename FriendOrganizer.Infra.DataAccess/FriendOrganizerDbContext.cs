@@ -17,19 +17,21 @@ namespace FriendOrganizer.Infra.DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //var conStringConfig = ConfigurationManager.ConnectionStrings["FriendOrganizerDb"];
-            //if(conStringConfig != null)
-            //{
-            //    Console.WriteLine(conStringConfig);
-            //}
-            //else
-            //{
-            //    Console.WriteLine("CANNOT GET CONNECTION STRING FROM CONFIGURATION");
-            //}
+           // //If they can't share the same App.config, you can use the syntax to use a separate config file for the connection strings, and then include that file as a link.
+           // var conStringConfig = ConfigurationManager.ConnectionStrings["FriendOrganizerDb"];
+           // if(conStringConfig != null)
+           // {
+           //     Console.WriteLine(conStringConfig);
+           // }
+           // else
+           // {
+           //     Console.WriteLine("CANNOT GET CONNECTION STRING FROM CONFIGURATION");
+           // }
 
-            // string conString = conStringConfig.ConnectionString;
+            //TODO: It gets the con string in the UI, but it doesnt get it in DataAccess.
+             string conString = ConfigurationManager.ConnectionStrings["FriendOrganizerDb"].ConnectionString;
 
-            string conString = @"Server =(localdb)\mssqllocaldb;Database=FriendOrganizer;Trusted_Connection =True;";
+            //string conString = @"Server =(localdb)\mssqllocaldb;Database=FriendOrganizer;Trusted_Connection =True;";
             optionsBuilder.UseSqlServer(conString);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
