@@ -21,7 +21,14 @@ namespace FriendOrganizer.UI.ViewModel
         {
             this._friendLookupDataService = friendLookupDataService;
             _eventAggregator = eventAggregator;
-            Friends = new ObservableCollection<LookupItemDto>();
+            Friends = new ObservableCollection<NavigationItemViewModel>();
+            _eventAggregator.GetEvent<AfterFriendSavedEvent>().Subscribe(AfterFriendSaved);
+        }
+
+        private void AfterFriendSaved(AfterFriendSavedEventArgs obj)
+        {
+            var lookupItem = Friends.Single(l => l.Id == obj.Id);
+            lookupItem.DisplayMember = obj.DisplayMember;
         }
 
         public async Task LoadFriendsLookupAsync()
@@ -30,16 +37,16 @@ namespace FriendOrganizer.UI.ViewModel
             Friends.Clear();
             foreach (var item in lookup)
             {
-                Friends.Add(item);
+                Friends.Add(new NavigationItemViewModel(item.Id, item.DisplayMember));
             }
 
         }
 
-        public ObservableCollection<LookupItemDto> Friends { get; }
+        public ObservableCollection<NavigationItemViewModel> Friends { get; }
 
-        private LookupItemDto _selectedFriend;
+        private NavigationItemViewModel _selectedFriend;
 
-        public LookupItemDto SelectedFriend
+        public NavigationItemViewModel SelectedFriend
         {
             get { return _selectedFriend; }
             set { _selectedFriend = value;

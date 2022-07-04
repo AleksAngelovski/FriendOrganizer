@@ -29,9 +29,9 @@ namespace FriendOrganizer.Infra.DataAccess
            // }
 
             //TODO: It gets the con string in the UI, but it doesnt get it in DataAccess.
-             string conString = ConfigurationManager.ConnectionStrings["FriendOrganizerDb"].ConnectionString;
+             //string conString = ConfigurationManager.ConnectionStrings["FriendOrganizerDb"].ConnectionString;
 
-            //string conString = @"Server =(localdb)\mssqllocaldb;Database=FriendOrganizer;Trusted_Connection =True;";
+            string conString = @"Server =(localdb)\mssqllocaldb;Database=FriendOrganizer;Trusted_Connection =True;";
             optionsBuilder.UseSqlServer(conString);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

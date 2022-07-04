@@ -4,6 +4,17 @@
              xmlns:local="clr-namespace:FriendOrganizer.UI"
              Startup ="Application_Startup">
     <Application.Resources>
-         
+        <Style TargetType="TextBox">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <AdornedElementPlaceholder/>
+                            <TextBlock FontSize="12" Foreground="Red" Text="{Binding ElementName=placeholder, Path=AdornedElement.(ValidationErrors)[0].ErrorContent}"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>
