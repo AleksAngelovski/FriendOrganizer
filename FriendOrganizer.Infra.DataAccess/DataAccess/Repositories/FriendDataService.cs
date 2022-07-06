@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FriendOrganizer.UI.Data
+namespace FriendOrganizer.Infra.DataAccess.DataAccess.Repositories
 {
     public class FriendDataService : IFriendDataService
     {
@@ -15,17 +15,18 @@ namespace FriendOrganizer.UI.Data
 
         public FriendDataService(FriendOrganizerDbContext friendOrganizerDbContext)
         {
-            this._friendOrganizerDbContext = friendOrganizerDbContext;
+            _friendOrganizerDbContext = friendOrganizerDbContext;
         }
         public async Task<Friend> GetByIdAsync(int friendId)
         {
-            return await _friendOrganizerDbContext.Friends.AsNoTracking().SingleAsync(f=>f.Id == friendId);
+            return await _friendOrganizerDbContext.Friends.SingleAsync(f => f.Id == friendId);
         }
 
         public async Task SaveAsync(Friend friend)
         {
-            _friendOrganizerDbContext.Friends.Attach(friend);
-            _friendOrganizerDbContext.Entry(friend).State = EntityState.Modified;
+            //We dont need this cause we removed asnotracking.
+            //_friendOrganizerDbContext.Friends.Attach(friend);
+            //_friendOrganizerDbContext.Entry(friend).State = EntityState.Modified;
             await _friendOrganizerDbContext.SaveChangesAsync();
         }
     }

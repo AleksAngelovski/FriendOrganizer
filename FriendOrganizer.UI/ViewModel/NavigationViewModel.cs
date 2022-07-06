@@ -1,6 +1,6 @@
 ﻿using FriendOrganizer.Core.Dtos;
 using FriendOrganizer.Core.Model;
-using FriendOrganizer.Infra.DataAccess.DataAccess;
+using FriendOrganizer.Infra.DataAccess.DataAccess.Lookps;
 using FriendOrganizer.UI.Events;
 using Prism.Events;
 using System;

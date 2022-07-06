@@ -7,13 +7,75 @@
         xmlns:view="clr-namespace:FriendOrganizer.UI.View"
         mc:Ignorable="d"
         Title="FriendOrganizer" Height="450" Width="800" FontSize="20">
-    <Grid>
+    <Grid Margin="118,0,78,0">
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+
         </Grid.ColumnDefinitions>
-        <view:NavigationView DataContext="{Binding NavigationViewModel}"/>
-        <view:FriendDetailView Grid.Column="1" DataContext="{Binding FriendDetailViewModel}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Menu FontSize="20" Grid.Column="0" >
+            <MenuItem Header="Create" >
+                <MenuItem Header="New Friend" Command="{Binding CreateNewFriendCommand}" />
+            </MenuItem>
+        </Menu>
+        <view:NavigationView Grid.Column="1" DataContext="{Binding NavigationViewModel}" Margin="10,0,0,0" Grid.RowSpan="4"/>
+         
+        <view:FriendDetailView Grid.Column="2" DataContext="{Binding FriendDetailViewModel}"  />
+        <!-- Col 3-->
+        <ComboBox ItemsSource="{Binding People}" Grid.Column="3" Grid.Row="0" SelectedItem="{Binding SelectedPerson}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding FirstName}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding SelectedPerson.LastName }"/>
+
+        <ComboBox ItemsSource="{Binding SelectedPerson.Adresses}" Grid.Column="3" Grid.Row="2">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Street}"/>
+                        <TextBlock Text="{Binding ZipCode}"/>
+                        <TextBlock Text="{Binding City}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         
+        <!-- Col 4-->
+        <TextBlock Grid.Column="4" Grid.Row="0" x:Name="SelectedPerson_FirstName" />
+        <ContentControl Grid.Column="4" Grid.Row="1" x:Name="ActiveItem" />
+        <!-- Col 5-->
+        <Button  Grid.Column="5" Grid.Row="0" x:Name="LoadPageOne">Load First Page</Button>
+        <ScrollViewer Grid.Column="5" Grid.Row="1" Grid.RowSpan="2">
+            <StackPanel Orientation="Vertical" >
+            <Image MaxHeight="200" MaxWidth="200" Source="https://netivist.org/uploads/forum/discussions/pictures/55d9a37555f4f719785e3468/windows-10-download.jpg"/>
+            <Image MaxHeight="200" MaxWidth="200" Source="https://netivist.org/uploads/forum/discussions/pictures/55d9a37555f4f719785e3468/windows-10-download.jpg"/>
+            <Image MaxHeight="200" MaxWidth="200" Source="https://netivist.org/uploads/forum/discussions/pictures/55d9a37555f4f719785e3468/windows-10-download.jpg"/>
+            <Image MaxHeight="200" MaxWidth="200" Source="https://netivist.org/uploads/forum/discussions/pictures/55d9a37555f4f719785e3468/windows-10-download.jpg"/>
+        </StackPanel>
+        </ScrollViewer>
+
+        <ItemsControl ItemsSource="{Binding People}" Grid.Column="7" Grid.Row="0">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding FirstName}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </Window>

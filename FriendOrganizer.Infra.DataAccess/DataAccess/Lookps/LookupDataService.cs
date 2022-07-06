@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FriendOrganizer.Infra.DataAccess.DataAccess
+namespace FriendOrganizer.Infra.DataAccess.DataAccess.Lookps
 {
     public class LookupDataService : IFriendLookupDataService
     {
@@ -14,7 +14,7 @@ namespace FriendOrganizer.Infra.DataAccess.DataAccess
 
         public LookupDataService(FriendOrganizerDbContext friendOrganizerDbContext)
         {
-            this._friendOrganizerDbContext = friendOrganizerDbContext;
+            _friendOrganizerDbContext = friendOrganizerDbContext;
         }
 
         public async Task<IEnumerable<LookupItemDto>> GetFriendLookupAsync()

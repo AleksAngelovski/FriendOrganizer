@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace FriendOrganizer.UI.Data
+namespace FriendOrganizer.Infra.DataAccess.DataAccess.Repositories
 {
     public interface IFriendDataService
     {

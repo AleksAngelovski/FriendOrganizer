@@ -1,5 +1,5 @@
 ﻿using FriendOrganizer.Core.Model;
-using FriendOrganizer.UI.Data;
+using FriendOrganizer.Infra.DataAccess.DataAccess.Repositories;
 using FriendOrganizer.UI.Events;
 using FriendOrganizer.UI.Wrapper;
 using Prism.Commands;
@@ -18,6 +18,7 @@ namespace FriendOrganizer.UI.ViewModel
         private readonly IFriendDataService _friendDataService;
         private readonly IEventAggregator _eventAggregator;
         private FriendWrapper _friend;
+        private bool _hasChanges;
 
         public FriendDetailViewModel(IFriendDataService friendDataService, IEventAggregator eventAggregator)
         {
@@ -36,7 +37,7 @@ namespace FriendOrganizer.UI.ViewModel
             Friend = new FriendWrapper(friend);
             Friend.PropertyChanged += (s, e) =>
             {
-                if(e.PropertyName == nameof(Friend.HasErrors))
+                if (e.PropertyName == nameof(Friend.HasErrors))
                 {
                     ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
                 }
@@ -55,6 +56,9 @@ namespace FriendOrganizer.UI.ViewModel
         }
 
         public ICommand SaveCommand { get; }
+
+        public bool HasChanges => _hasChanges;
+
         private async void OnSaveExecute()
         {
             await _friendDataService.SaveAsync(Friend.Model);
@@ -77,6 +81,9 @@ namespace FriendOrganizer.UI.ViewModel
             await LoadFriendAsync(friendId);
         }
 
-
+        public Task LoadFriendAsync(int? friendId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

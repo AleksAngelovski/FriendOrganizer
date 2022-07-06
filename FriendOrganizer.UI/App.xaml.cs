@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using FriendOrganizer.UI.Data;
 using FriendOrganizer.UI.Startup;
 using FriendOrganizer.UI.ViewModel;
 using System;

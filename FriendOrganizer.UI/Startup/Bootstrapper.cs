@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using FriendOrganizer.Infra.DataAccess;
-using FriendOrganizer.Infra.DataAccess.DataAccess;
-using FriendOrganizer.UI.Data;
+using FriendOrganizer.Infra.DataAccess.DataAccess.Lookps;
+using FriendOrganizer.Infra.DataAccess.DataAccess.Repositories;
 using FriendOrganizer.UI.ViewModel;
 using Prism.Events;
 using System;
