@@ -4,10 +4,14 @@ using System.Threading.Tasks;
 
 namespace FriendOrganizer.Infra.DataAccess.DataAccess.Repositories
 {
-    public interface IFriendDataService
+    public interface IFriendRepository
     {
         Task<Friend> GetByIdAsync(int friendId);
 
-        Task SaveAsync(Friend friend);
+        Task SaveAsync();
+
+        bool HasChanges();
+        void Add(Friend friend);
+        void Remove(Friend model);
     }
 }

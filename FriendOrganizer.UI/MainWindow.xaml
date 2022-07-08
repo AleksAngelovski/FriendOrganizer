@@ -5,18 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FriendOrganizer.UI"
         xmlns:view="clr-namespace:FriendOrganizer.UI.View"
+        xmlns:viewModel="clr-namespace:FriendOrganizer.UI.ViewModel"
         mc:Ignorable="d"
         Title="FriendOrganizer" Height="450" Width="800" FontSize="20">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:FriendDetailViewModel}"/>
+    </Window.Resources>
+    
     <Grid Margin="118,0,78,0">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="400"/>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="400"/>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
 
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -31,9 +37,8 @@
                 <MenuItem Header="New Friend" Command="{Binding CreateNewFriendCommand}" />
             </MenuItem>
         </Menu>
-        <view:NavigationView Grid.Column="1" DataContext="{Binding NavigationViewModel}" Margin="10,0,0,0" Grid.RowSpan="4"/>
-         
-        <view:FriendDetailView Grid.Column="2" DataContext="{Binding FriendDetailViewModel}"  />
+                <view:NavigationView Grid.Column="1" DataContext="{Binding NavigationViewModel}" Margin="10,0,0,0" Grid.RowSpan="4"/>
+                <ContentControl Grid.Column="2" Content="{Binding FriendDetailViewModel}" Grid.RowSpan="4" />
         <!-- Col 3-->
         <ComboBox ItemsSource="{Binding People}" Grid.Column="3" Grid.Row="0" SelectedItem="{Binding SelectedPerson}">
             <ComboBox.ItemTemplate>
